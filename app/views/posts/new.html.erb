@@ -1,11 +1,27 @@
-<% content_for :title, "New post" %>
+<div class="container mt-5">
+  <div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-body">
+      <h3 class="card-title text-center">Create a New Post</h3>
 
-<h1>New post</h1>
+      <%= form_with model: @post, local: true do |form| %>
+        <div class="mb-3">
+          <%= form.label :title, class: "form-label" %>
+          <%= form.text_field :title, class: "form-control", placeholder: "Enter post title" %>
+        </div>
 
-<%= render "form", post: @post %>
+        <div class="mb-3">
+          <%= form.label :body, class: "form-label" %>
+          <%= form.text_area :body, class: "form-control", rows: 5, placeholder: "Write your post content here" %>
+        </div>
 
-<br>
+        <div class="text-center">
+          <%= form.submit "Create Post", class: "btn btn-primary" %>
+        </div>
+      <% end %>
 
-<div>
-  <%= link_to "Back to posts", posts_path %>
+      <div class="text-center mt-3">
+        <%= link_to "Back to posts", posts_path, class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
 </div>

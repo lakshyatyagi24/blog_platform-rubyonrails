@@ -1,16 +1,44 @@
-<h2><%= @post.title %></h2>
-<p><%= @post.body %></p>
+<div class="container mt-5">
 
-<h3>Comments</h3>
-<% @comments.each do |comment| %>
-  <p><strong>Comment:</strong> <%= comment.body %></p>
-<% end %>
-
-<h3>Add a comment:</h3>
-<%= form_with(model: [ @post, Comment.new ], local: true) do |form| %>
-  <div class="mb-3">
-    <%= form.label :body %>
-    <%= form.text_area :body, class: 'form-control' %>
+  <!-- Blog Post Details Card -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h3 class="card-title"><%= @post.title %></h3>
+      <p class="card-text"><%= @post.body %></p>
+    </div>
   </div>
-  <%= form.submit "Add Comment", class: "btn btn-primary" %>
-<% end %>
+
+  <!-- Comments Section -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h4 class="card-title">Comments</h4>
+
+      <% if @post.comments.any? %>
+        <ul class="list-group list-group-flush">
+          <% @post.comments.each do |comment| %>
+            <li class="list-group-item">
+              <p><strong>Comment:</strong> <%= comment.body %></p>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-muted">No comments yet. Be the first to comment!</p>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Add Comment Form Card -->
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Add a comment:</h4>
+      
+      <%= form_with(model: [@post, Comment.new], local: true) do |form| %>
+        <div class="mb-3">
+          <%= form.text_area :body, class: "form-control", rows: 3, placeholder: "Write your comment here..." %>
+        </div>
+        <%= form.submit "Add Comment", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

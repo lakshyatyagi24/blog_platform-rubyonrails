@@ -22,4 +22,21 @@ body {
     background-color: #218838;
     border-color: #1e7e34;
   }
+  .fixed-card-size {
+    height: 300px; // Adjust as needed
+  }
   
+  .fixed-card-size .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; // Show only 3 lines of text, adjust as needed
+    -webkit-box-orient: vertical;
+  }
+    
