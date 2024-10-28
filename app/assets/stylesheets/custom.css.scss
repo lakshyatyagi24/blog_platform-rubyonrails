@@ -1,0 +1,25 @@
+// Custom styling for Blog Platform
+body {
+    font-family: 'Helvetica', sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  .card-post {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .card-post:hover {
+    transform: translateY(-5px);
+  }
+  
+  .new-post-btn {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+    transition: background-color 0.2s;
+  }
+  .new-post-btn:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+  
