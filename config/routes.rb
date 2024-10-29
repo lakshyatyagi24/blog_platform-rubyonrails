@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :posts do
     resources :comments, only: [:create]
   end
@@ -8,5 +9,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  root "posts#index"
+  root to: "posts#index"
 end
