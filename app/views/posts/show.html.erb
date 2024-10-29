@@ -1,44 +1,42 @@
-<div class="container mt-5">
-
-  <!-- Blog Post Details Card -->
-  <div class="card mb-4">
-    <div class="card-body">
-      <h3 class="card-title"><%= @post.title %></h3>
-      <p class="card-text"><%= @post.body %></p>
-    </div>
-  </div>
-
-  <!-- Comments Section -->
-  <div class="card mb-4">
-    <div class="card-body">
-      <h4 class="card-title">Comments</h4>
-
-      <% if @post.comments.any? %>
-        <ul class="list-group list-group-flush">
-          <% @post.comments.each do |comment| %>
-            <li class="list-group-item">
-              <p><strong>Comment:</strong> <%= comment.body %></p>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p class="text-muted">No comments yet. Be the first to comment!</p>
-      <% end %>
-    </div>
-  </div>
-
-  <!-- Add Comment Form Card -->
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Add a comment:</h4>
-      
-      <%= form_with(model: [@post, Comment.new], local: true) do |form| %>
-        <div class="mb-3">
-          <%= form.text_area :body, class: "form-control", rows: 3, placeholder: "Write your comment here..." %>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <!-- Post Content Card -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h1 class="card-title"><%= @post.title %></h1>
+          <p class="card-text"><%= @post.body %></p>
         </div>
-        <%= form.submit "Add Comment", class: "btn btn-primary" %>
-      <% end %>
+      </div>
+
+      <!-- Comments Section -->
+      <h2 class="mt-5">Comments</h2>
+      <div class="list-group mb-4">
+        <% @post.comments.each do |comment| %>
+          <div class="list-group-item list-group-item-action">
+            <p class="mb-1"><%= comment.body %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Add Comment Form -->
+      <div class="card">
+        <div class="card-header">Add a comment:</div>
+        <div class="card-body">
+          <%= form_with(model: [@post, Comment.new], local: true) do |form| %>
+            <div class="mb-3">
+              <%= form.label :body, class: 'form-label' %>
+              <%= form.text_area :body, class: 'form-control', rows: 4 %>
+            </div>
+            <%= form.submit "Add Comment", class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Back to Posts Link -->
+      <div class="text-center mt-4">
+        <%= link_to "Back to posts", posts_path, class: 'btn btn-outline-secondary' %>
+      </div>
     </div>
   </div>
-
 </div>

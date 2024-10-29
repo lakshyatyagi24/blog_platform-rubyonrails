@@ -1,26 +1,30 @@
+<% content_for :title, "New Post" %>
+
 <div class="container mt-5">
-  <div class="card mx-auto" style="max-width: 600px;">
-    <div class="card-body">
-      <h3 class="card-title text-center">Create a New Post</h3>
-
-      <%= form_with model: @post, local: true do |form| %>
-        <div class="mb-3">
-          <%= form.label :title, class: "form-label" %>
-          <%= form.text_field :title, class: "form-control", placeholder: "Enter post title" %>
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card shadow-sm">
+        <div class="card-header text-center bg-dark text-white">
+          <h3>Create a New Blog Post</h3>
         </div>
+        <div class="card-body">
+          <%= form_with(model: @post, local: true, class: "needs-validation") do |form| %>
+            <div class="mb-3">
+              <%= form.label :title, "Post Title", class: "form-label" %>
+              <%= form.text_field :title, class: "form-control", placeholder: "Enter your post title here", required: true %>
+            </div>
 
-        <div class="mb-3">
-          <%= form.label :body, class: "form-label" %>
-          <%= form.text_area :body, class: "form-control", rows: 5, placeholder: "Write your post content here" %>
+            <div class="mb-3">
+              <%= form.label :body, "Content", class: "form-label" %>
+              <%= form.text_area :body, rows: 10, class: "form-control", placeholder: "Write your blog content here...", required: true %>
+            </div>
+
+            <div class="text-center">
+              <%= form.submit "Create Post", class: "btn btn-success btn-lg" %>
+              <%= link_to "Cancel", posts_path, class: "btn btn-outline-secondary btn-lg ms-3" %>
+            </div>
+          <% end %>
         </div>
-
-        <div class="text-center">
-          <%= form.submit "Create Post", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-
-      <div class="text-center mt-3">
-        <%= link_to "Back to posts", posts_path, class: "btn btn-outline-secondary" %>
       </div>
     </div>
   </div>
