@@ -1,4 +1,8 @@
 class Post < ApplicationRecord
-    has_many :comments, dependent: :destroy
-end
+    has_rich_text :content
+  
+    # Validations
+    validates :title, presence: true, length: { maximum: 100 }
+    validates :content, presence: true
+  end
   
